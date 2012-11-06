@@ -82,13 +82,13 @@ public class SystemSnapshot {
 
         //#]
     }
-    //## operation SystemSnapshot(ReactionTime,HashMap,Temperature,Pressure)
+    //## operation SystemSnapshot(ReactionTime,LinkedHashMap,Temperature,Pressure)
     public  SystemSnapshot(ReactionTime p_reactionTime, LinkedHashMap p_speciesStatus, Temperature p_temperature, Pressure p_pressure) {
         {
             speciesStatus = new LinkedHashMap();
         }
         initRelations();
-        //#[ operation SystemSnapshot(ReactionTime,HashMap,Temperature,Pressure)
+        //#[ operation SystemSnapshot(ReactionTime,LinkedHashMap,Temperature,Pressure)
         time = p_reactionTime;
         speciesStatus = p_speciesStatus;
         temperature = p_temperature;
@@ -96,7 +96,7 @@ public class SystemSnapshot {
         //#]
     }
 
-    //## operation SystemSnapshot(ReactionTime,HashMap,HashMap)
+    //## operation SystemSnapshot(ReactionTime,LinkedHashMap,LinkedHashMap)
     //svp
     public SystemSnapshot(ReactionTime p_reactionTime, LinkedHashMap p_speciesStatus, double [] p_sensitivityStatus, Temperature p_temperature, Pressure p_pressure) {
       {
@@ -120,9 +120,9 @@ public class SystemSnapshot {
 
 
 
-    //## operation addSpeciesStatus(HashMap)
+    //## operation addSpeciesStatus(LinkedHashMap)
     public void addSpeciesStatus(LinkedHashMap p_speciesStatus) {
-        //#[ operation addSpeciesStatus(HashMap)
+        //#[ operation addSpeciesStatus(LinkedHashMap)
         if (speciesStatus == null) speciesStatus = new LinkedHashMap();
 
         if (p_speciesStatus == null) return;
@@ -239,7 +239,7 @@ public class SystemSnapshot {
         }
         else {
 //        	renormalizing the concentration
-        	HashSet hs= new HashSet(inertGas.keySet());
+        	LinkedHashSet hs= new LinkedHashSet(inertGas.keySet());
         	for (Iterator iter = hs.iterator(); iter.hasNext(); ) {
                 String name = (String)iter.next();
         		double c = (Double)inertGas.get(name);
@@ -329,10 +329,10 @@ public class SystemSnapshot {
           //#]
       }
 
-      //## operation setIDTranslator(HashMap)
+      //## operation setIDTranslator(LinkedHashMap)
     //svp
       public void setIDTranslator(LinkedHashMap p_hashMap){
-        //#[ operation setIDTranslator(HashMap)
+        //#[ operation setIDTranslator(LinkedHashMap)
         IDTranslator = p_hashMap;
         //#]
       }

@@ -57,12 +57,12 @@ public class ConversionTT implements TerminationTester {
         //#[ operation ConversionTT() 
         //#]
     }
-    //## operation ConversionTT(HashSet) 
+    //## operation ConversionTT(LinkedHashSet) 
     public  ConversionTT(LinkedList p_scs) {
         {
             speciesGoalConversionSet=new LinkedList();
         }
-        //#[ operation ConversionTT(HashSet) 
+        //#[ operation ConversionTT(LinkedHashSet) 
         speciesGoalConversionSet = p_scs;
         //#]
     }

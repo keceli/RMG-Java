@@ -138,7 +138,7 @@ public class Node extends GraphComponent {
       //#[ operation changeChemNodeElement(int,Node)
       Object element = getElement();
       if (element instanceof Collection) {
-      	HashSet result = new HashSet();
+      	LinkedHashSet result = new LinkedHashSet();
       	Iterator iter = ((Collection)element).iterator();
       	while (iter.hasNext()) {
       		Object nodeElement = iter.next();
@@ -262,7 +262,7 @@ public class Node extends GraphComponent {
       					}
       	     		}
       	     		if (carbon && oxygen) {
-      					HashSet result = new HashSet();
+      					LinkedHashSet result = new LinkedHashSet();
       					result.add(FGAtom.make(CO,feElement));
       					result.add(FGAtom.make(Cd,feElement));
       					return result;
@@ -286,7 +286,7 @@ public class Node extends GraphComponent {
       					return FGAtom.make(CO,feElement);
       				}
       				else if (cne.isAny() || cne.isNonH()) {
-      					HashSet result = new HashSet();
+      					LinkedHashSet result = new LinkedHashSet();
       					result.add(FGAtom.make(CO,feElement));
       					result.add(FGAtom.make(Cd,feElement));
       					return result;
@@ -298,7 +298,7 @@ public class Node extends GraphComponent {
       		}
       		// Cdd + null other-end node, change to Cd and CO
       		else {
-      			HashSet result = new HashSet();
+      			LinkedHashSet result = new LinkedHashSet();
       			result.add(FGAtom.make(CO,feElement));
       			result.add(FGAtom.make(Cd,feElement));
       			return result;
@@ -435,9 +435,9 @@ public class Node extends GraphComponent {
   }
 
   //## operation generateFGElement(String,int,int,int,String,int,int)
-  public HashSet generateFGElement(String p_atomType, int p_freeValency, int p_single, int p_double, String p_doubleEnd, int p_triple, int p_benzene) {
+  public LinkedHashSet generateFGElement(String p_atomType, int p_freeValency, int p_single, int p_double, String p_doubleEnd, int p_triple, int p_benzene) {
       //#[ operation generateFGElement(String,int,int,int,String,int,int)
-      HashSet result = new HashSet();
+      LinkedHashSet result = new LinkedHashSet();
       if (p_atomType.compareToIgnoreCase("H")==0) {
       	FGElement H = FGElement.make("H");
       	result.add(H);
@@ -683,7 +683,7 @@ public class Node extends GraphComponent {
       //#[ operation generateFgElement()
       Object o = getElement();
       if (o == null) throw new NullGraphComponentException("node");
-      HashSet result = new HashSet();
+      LinkedHashSet result = new LinkedHashSet();
       if (o instanceof Collection) {
       	Iterator iter = ((Collection)o).iterator();
       	while (iter.hasNext()) {
@@ -1084,9 +1084,9 @@ public class Node extends GraphComponent {
   }
 
   //## operation getOtherArcs(Arc)
-  public HashSet getOtherArcs(Arc p_arc) {
+  public LinkedHashSet getOtherArcs(Arc p_arc) {
       //#[ operation getOtherArcs(Arc)
-      HashSet otherArcs = new HashSet();
+      LinkedHashSet otherArcs = new LinkedHashSet();
 
       Iterator iter = getNeighbor();
       while (iter.hasNext()) {
@@ -1098,8 +1098,8 @@ public class Node extends GraphComponent {
       //#]
   }
   
-  public HashSet getNeighboringNodes(){
-	  HashSet neighboringNodes = new HashSet();
+  public LinkedHashSet getNeighboringNodes(){
+	  LinkedHashSet neighboringNodes = new LinkedHashSet();
 	  Iterator iter = getNeighbor();
 	  while (iter.hasNext()){
 		  Arc arc = (Arc)iter.next();

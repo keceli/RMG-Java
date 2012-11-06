@@ -70,7 +70,7 @@ public class ReactionTemplate {
   
   protected String name = "";		//## attribute name 
   
-  //protected HashMap reactionDictionaryByReactant = new HashMap();		//## attribute reactionDictionaryByReactant 
+  //protected LinkedHashMap reactionDictionaryByReactant = new LinkedHashMap();		//## attribute reactionDictionaryByReactant 
   
   protected WeakHashMap reactionDictionaryByStructure = new WeakHashMap();		//## attribute reactionDictionaryByStructure 
   
@@ -124,9 +124,9 @@ public class ReactionTemplate {
 	  else return true;
   }
   
-  //## operation calculateDepth(HashSet) 
-  private static final int calculateDepth(HashSet p_treeNodeSet) {
-      //#[ operation calculateDepth(HashSet) 
+  //## operation calculateDepth(LinkedHashSet) 
+  private static final int calculateDepth(LinkedHashSet p_treeNodeSet) {
+      //#[ operation calculateDepth(LinkedHashSet) 
       if (p_treeNodeSet==null) throw new NullPointerException();
       
       int dep = 0;
@@ -144,16 +144,16 @@ public class ReactionTemplate {
       //#]
   }
   
-  //## operation calculateDistance(HashSet,HashSet) 
-  private static final int calculateDistance(HashSet p_treeNodeSet1, HashSet p_treeNodeSet2) {
-      //#[ operation calculateDistance(HashSet,HashSet) 
+  //## operation calculateDistance(LinkedHashSet,LinkedHashSet) 
+  private static final int calculateDistance(LinkedHashSet p_treeNodeSet1, LinkedHashSet p_treeNodeSet2) {
+      //#[ operation calculateDistance(LinkedHashSet,LinkedHashSet) 
       return Math.abs(calculateDepth(p_treeNodeSet1)-calculateDepth(p_treeNodeSet2));
       //#]
   }
   
-  //## operation extractKineticsTemplateKey(HashSet) 
+  //## operation extractKineticsTemplateKey(LinkedHashSet) 
   private static final LinkedHashSet extractKineticsTemplateKey(LinkedHashSet p_treeNode) {
-      //#[ operation extractKineticsTemplateKey(HashSet) 
+      //#[ operation extractKineticsTemplateKey(LinkedHashSet) 
       LinkedHashSet key = new LinkedHashSet();
       for (Iterator iter = p_treeNode.iterator(); iter.hasNext(); ) {
       	Object n = iter.next();
@@ -177,7 +177,7 @@ public class ReactionTemplate {
   //## operation fillKineticsBottomToTop() 
   public void fillKineticsBottomToTop() {
       //#[ operation fillKineticsBottomToTop() 
-      LinkedHashSet rootSet = new LinkedHashSet();//6/26/09 gmagoon: changed from HashSet to LinkedHashSet to make behavior deterministic
+      LinkedHashSet rootSet = new LinkedHashSet();//6/26/09 gmagoon: changed from LinkedHashSet to LinkedHashSet to make behavior deterministic
       
       Iterator tree_iter = getReactantTree();
       while (tree_iter.hasNext()) {
@@ -194,9 +194,9 @@ public class ReactionTemplate {
   Effects:
   Modifies:
   */
-  //## operation fillKineticsByAverage(HashSet) 
+  //## operation fillKineticsByAverage(LinkedHashSet) 
   private Kinetics fillKineticsByAverage(LinkedHashSet p_treeNodeSet) {
-      //#[ operation fillKineticsByAverage(HashSet) 
+      //#[ operation fillKineticsByAverage(LinkedHashSet) 
       // check if k is already in the library
       // if it is, don't do any average;
       // if it isn't, average all the k below this tree node set to get an estimated k for this tree node set;
@@ -287,7 +287,7 @@ public class ReactionTemplate {
       
       Collection allPossibleTreeNodeSet = MathTool.expand(p_matchedPathSet.iterator());
       
-      HashSet bestKineticsTemplateSet = new HashSet();
+      LinkedHashSet bestKineticsTemplateSet = new LinkedHashSet();
       LinkedHashSet bestKineticsSet = new LinkedHashSet();
       // find the closest distance
       int closest = Integer.MAX_VALUE;
@@ -463,10 +463,10 @@ public class ReactionTemplate {
 			*/
 			if (name.equals("intra_H_migration")) {
               ChemGraph rcg = (ChemGraph)(p_structure.getReactants().next());
-          	HashSet rrad = rcg.getRadicalNode();
+          	LinkedHashSet rrad = rcg.getRadicalNode();
            	Atom rra = (Atom)( (Node) ( (rrad.iterator()).next())).getElement();
               ChemGraph pcg = (ChemGraph)(p_structure.getProducts().next());
-            	HashSet prad = pcg.getRadicalNode();
+            	LinkedHashSet prad = pcg.getRadicalNode();
              	Atom pra = (Atom)( (Node) ( (prad.iterator()).next())).getElement();
               if (rra.isOxygen() && pra.isCarbon()) {
               	p_structure.setDirection(1);
@@ -627,10 +627,10 @@ public class ReactionTemplate {
 	  return comment.toString();
   }
 
-	//## operation findUnion(String,HashMap) 
-  private void findUnion(String p_name, HashMap p_unRead) {
-      //#[ operation findUnion(String,HashMap) 
-      HashSet union = (HashSet)p_unRead.get(p_name);
+	//## operation findUnion(String,LinkedHashMap) 
+  private void findUnion(String p_name, LinkedHashMap p_unRead) {
+      //#[ operation findUnion(String,LinkedHashMap) 
+      LinkedHashSet union = (LinkedHashSet)p_unRead.get(p_name);
       FunctionalGroupCollection fgc = new FunctionalGroupCollection(p_name);
       Iterator union_iter = union.iterator();
       while (union_iter.hasNext()) {
@@ -787,7 +787,7 @@ public class ReactionTemplate {
       LinkedList r = new LinkedList();
       r.add(p_reactant);
 		
-      /*HashSet reaction = getReactionSetFromReactant(r);
+      /*LinkedHashSet reaction = getReactionSetFromReactant(r);
       if (reaction != null)
       	return reaction;*/
       
@@ -849,7 +849,7 @@ public class ReactionTemplate {
       for (Iterator iter = allReactionSites.iterator(); iter.hasNext(); ) {
 		  
           MatchedSite ms = (MatchedSite)iter.next();
-          HashMap site = ms.getCenter();
+          LinkedHashMap site = ms.getCenter();
        	  int redundancy = ms.getRedundancy();
 		  //System.out.println(ms.toString());
           // reset the reacted site for rg in reactant linkedlist
@@ -956,25 +956,25 @@ public class ReactionTemplate {
 			if (!reverseReaction.isForward()) throw new InvalidReactionDirectionException();
 			return reverseReaction;
 		}
-      HashSet allReactionSites1 = structureTemplate.identifyReactedSites(r1,1);
-      HashSet allReactionSites2 = structureTemplate.identifyReactedSites(r2,2);
+      LinkedHashSet allReactionSites1 = structureTemplate.identifyReactedSites(r1,1);
+      LinkedHashSet allReactionSites2 = structureTemplate.identifyReactedSites(r2,2);
       
       LinkedList reactant = new LinkedList();
       reactant.add(r1);
       reactant.add(r2);
       
-		HashSet rateSet = new HashSet();
+		LinkedHashSet rateSet = new LinkedHashSet();
       
       for (Iterator iter1 = allReactionSites1.iterator(); iter1.hasNext(); ) {
       	MatchedSite ms1 = (MatchedSite)iter1.next();
-      	HashMap site1 = ms1.getCenter();
+      	LinkedHashMap site1 = ms1.getCenter();
           r1.resetReactedSite(site1);
       
           int redundancy1 = ms1.getRedundancy();
       
       	for (Iterator iter2 = allReactionSites2.iterator(); iter2.hasNext(); ) {
       		MatchedSite ms2 = (MatchedSite)iter2.next();
-      		HashMap site2 = (HashMap)ms2.getCenter();
+      		LinkedHashMap site2 = (LinkedHashMap)ms2.getCenter();
       	    r2.resetReactedSite(site2);
       
       	    int redundancy2 = ms2.getRedundancy();
@@ -1051,7 +1051,7 @@ public class ReactionTemplate {
       
       for (Iterator iter = allReactionSites.iterator(); iter.hasNext(); ) {
           MatchedSite ms = (MatchedSite)iter.next();
-          HashMap site = ms.getCenter();
+          LinkedHashMap site = ms.getCenter();
        	int redundancy = ms.getRedundancy();
       
           // reset the reacted site for rg in reactant linkedlist
@@ -1143,7 +1143,7 @@ public class ReactionTemplate {
       
       for (Iterator iter1 = rs1.iterator(); iter1.hasNext(); ) {
       	MatchedSite ms1 = (MatchedSite)iter1.next();
-      	HashMap site1 = ms1.getCenter();
+      	LinkedHashMap site1 = ms1.getCenter();
           r1.resetReactedSite(site1);
       
           boolean forbidden1 = false;
@@ -1161,7 +1161,7 @@ public class ReactionTemplate {
       
       	for (Iterator iter2 = rs2.iterator(); iter2.hasNext(); ) {
       		MatchedSite ms2 = (MatchedSite)iter2.next();
-      		HashMap site2 = (HashMap)ms2.getCenter();
+      		LinkedHashMap site2 = (LinkedHashMap)ms2.getCenter();
       	    r2.resetReactedSite(site2);
       
       	    boolean forbidden2 = false;
@@ -1304,7 +1304,7 @@ public class ReactionTemplate {
 				}
       	FileReader in = new FileReader(p_fileName);
       	BufferedReader data = new BufferedReader(in);
-      	HashMap unRead = new HashMap();
+      	LinkedHashMap unRead = new LinkedHashMap();
       	String fgname = null;
       
       	// step 1: read in structure
@@ -1318,7 +1318,7 @@ public class ReactionTemplate {
       		line = line.trim();
       		String prefix = line.substring(0,5);
       		if (prefix.compareToIgnoreCase("union") == 0) {
-      			HashSet union = ChemParser.readUnion(line);
+      			LinkedHashSet union = ChemParser.readUnion(line);
        			unRead.put(fgname,union);
       		}
       		else {
@@ -1375,7 +1375,7 @@ public class ReactionTemplate {
       try {
       	FileReader in = new FileReader(p_fileName);
       	BufferedReader data = new BufferedReader(in);
-      	HashMap unRead = new HashMap();
+      	LinkedHashMap unRead = new LinkedHashMap();
       	String fgname = null;
       
       	// step 1: read in structure
@@ -1400,7 +1400,7 @@ public class ReactionTemplate {
       		if (line == null) break read;
       		line = line.trim();
       		if (line.toLowerCase().startsWith("union") || line.startsWith("OR") ) {
-      			HashSet union = ChemParser.readUnion(line);
+      			LinkedHashSet union = ChemParser.readUnion(line);
        			unRead.put(fgname,union);
       		}
       		else {
@@ -1660,9 +1660,9 @@ public class ReactionTemplate {
       //#]
   }
   
-  //## operation setReactantTree(HashSet) 
+  //## operation setReactantTree(LinkedHashSet) 
   public void setReactantTree(LinkedHashSet p_treeSet) {
-      //#[ operation setReactantTree(HashSet) 
+      //#[ operation setReactantTree(LinkedHashSet) 
       structureTemplate.setReactantTree(p_treeSet);
       
       
@@ -1693,7 +1693,7 @@ public class ReactionTemplate {
       direction = p_direction;
   }
   
-  public HashMap getFgDictionary() {
+  public LinkedHashMap getFgDictionary() {
       return fgDictionary;
   }
   

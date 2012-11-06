@@ -41,7 +41,7 @@ public class FrequencyDatabase {
 
     protected static FrequencyDatabase INSTANCE = new FrequencyDatabase();		//## attribute INSTANCE
 
-    protected HashMap freqDictionary;		//## attribute freqDictionary
+    protected LinkedHashMap freqDictionary;		//## attribute freqDictionary
 
     protected HierarchyTree freqTree;		//## attribute freqTree
 
@@ -50,7 +50,7 @@ public class FrequencyDatabase {
 
     private  FrequencyDatabase() {
         freqTree = new HierarchyTree();
-        freqDictionary = new HashMap();
+        freqDictionary = new LinkedHashMap();
         
 		String directory = System.getProperty("jing.chem.FrequencyDatabase.pathName");
         if (directory == null) {
@@ -146,13 +146,13 @@ public class FrequencyDatabase {
 
 
     //## operation readStandardDictionary(String)
-    public HashMap readStandardDictionary(String p_fileName) throws FileNotFoundException, IOException {
+    public LinkedHashMap readStandardDictionary(String p_fileName) throws FileNotFoundException, IOException {
         //#[ operation readStandardDictionary(String)
         try {
                 FileReader in = new FileReader(p_fileName);
                 BufferedReader data = new BufferedReader(in);
-            HashMap dictionary = new HashMap();
-            HashMap unRead = new HashMap();
+            LinkedHashMap dictionary = new LinkedHashMap();
+            LinkedHashMap unRead = new LinkedHashMap();
 
                  String line = ChemParser.readMeaningfulLine(data, true);
 
@@ -165,7 +165,7 @@ public class FrequencyDatabase {
                         line = line.trim();
                         String prefix = line.substring(0,5);
                         if (prefix.compareToIgnoreCase("union") == 0) {
-                                HashSet union = ChemParser.readUnion(line);
+                                LinkedHashSet union = ChemParser.readUnion(line);
                                  unRead.put(fgname,union);
                         }
                         else {
@@ -212,9 +212,9 @@ public class FrequencyDatabase {
     }
 
 
-    //## operation readStandardTree(String,HashMap,int)
-    public HierarchyTree readStandardTree(String p_fileName, HashMap p_dictionary, int p_level) throws IOException {
-        //#[ operation readStandardTree(String,HashMap,int)
+    //## operation readStandardTree(String,LinkedHashMap,int)
+    public HierarchyTree readStandardTree(String p_fileName, LinkedHashMap p_dictionary, int p_level) throws IOException {
+        //#[ operation readStandardTree(String,LinkedHashMap,int)
         try {
         	FileReader in = new FileReader(p_fileName);
         	BufferedReader data = new BufferedReader(in);
@@ -238,7 +238,7 @@ public class FrequencyDatabase {
         return INSTANCE;
     }
 
-    public HashMap getGroupDictionary() {
+    public LinkedHashMap getGroupDictionary() {
         return freqDictionary;
     }
 

@@ -223,7 +223,7 @@ public class RateBasedRME implements ReactionModelEnlarger {
 		
         LinkedHashSet ur = p_reactionModel.getUnreactedReactionSet();
         
-		HashMap significantReactions = new HashMap();
+		LinkedHashMap significantReactions = new LinkedHashMap();
 		int reactionWithSpecies = 0;
 		
         for (Iterator iur = ur.iterator(); iur.hasNext();) {

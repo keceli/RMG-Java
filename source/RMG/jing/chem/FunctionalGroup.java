@@ -179,11 +179,11 @@ public class FunctionalGroup implements Matchable {
     
     /**
     Requires:
-    Effects: return a HashMap storing this functional group centers.
+    Effects: return a LinkedHashMap storing this functional group centers.
     Modifies:
     */
     //## operation getCentralNode() 
-    protected HashMap getCentralNode() {
+    protected LinkedHashMap getCentralNode() {
         //#[ operation getCentralNode() 
         return getGraph().getCentralNode();
         //#]

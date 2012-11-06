@@ -37,23 +37,23 @@ import jing.rxnSys.Logger;
 public class TransportGALibrary {
 
     protected static TransportGALibrary INSTANCE = new TransportGALibrary();
-    protected HashMap groupDictionary;
-    protected HashMap groupLibrary;
+    protected LinkedHashMap groupDictionary;
+    protected LinkedHashMap groupLibrary;
     protected HierarchyTree groupTree;
     // begin pey
     protected HierarchyTree ringTree;
-    protected HashMap ringDictionary;
+    protected LinkedHashMap ringDictionary;
     // end pey
-    protected HashMap ringLibrary;
+    protected LinkedHashMap ringLibrary;
     
 
     private TransportGALibrary() {
     	groupTree = new HierarchyTree();
-    	groupDictionary = new HashMap();
-    	groupLibrary = new HashMap();
-    	ringLibrary = new HashMap();
+    	groupDictionary = new LinkedHashMap();
+    	groupLibrary = new LinkedHashMap();
+    	ringLibrary = new LinkedHashMap();
     	//		 begin pey
-    	ringDictionary = new HashMap();
+    	ringDictionary = new LinkedHashMap();
     	ringTree = new HierarchyTree();
     	// end pey
 
@@ -223,12 +223,12 @@ public class TransportGALibrary {
         }
     }
 
-    public HashMap readStandardDictionary(String p_fileName) throws FileNotFoundException, IOException {
+    public LinkedHashMap readStandardDictionary(String p_fileName) throws FileNotFoundException, IOException {
         try {
         	FileReader in = new FileReader(p_fileName);
         	BufferedReader data = new BufferedReader(in);
-        	HashMap dictionary = new HashMap();
-        	HashMap unRead = new HashMap();
+        	LinkedHashMap dictionary = new LinkedHashMap();
+        	LinkedHashMap unRead = new LinkedHashMap();
         	
         	String line = ChemParser.readMeaningfulLine(data, true);
         	
@@ -241,7 +241,7 @@ public class TransportGALibrary {
         		line = line.trim();
         		String prefix = line.substring(0,5);
         		if (prefix.compareToIgnoreCase("union") == 0) {
-        			HashSet union = ChemParser.readUnion(line);
+        			LinkedHashSet union = ChemParser.readUnion(line);
         			unRead.put(fgname,union);
         		}
         		else {
@@ -286,11 +286,11 @@ public class TransportGALibrary {
     }
 
 
-    protected HashMap readStandardLibrary(String p_fileName, HashMap p_dictionary) throws IOException {
+    protected LinkedHashMap readStandardLibrary(String p_fileName, LinkedHashMap p_dictionary) throws IOException {
         try {
         	FileReader in = new FileReader(p_fileName);
         	BufferedReader data = new BufferedReader(in);
-        	HashMap library = new HashMap();
+        	LinkedHashMap library = new LinkedHashMap();
         	
             String line = ChemParser.readMeaningfulLine(data, true);
             while (line != null) {
@@ -371,7 +371,7 @@ public class TransportGALibrary {
         }
     }
 
-    public HierarchyTree readStandardTree(String p_fileName, HashMap p_dictionary, int p_level) throws IOException {
+    public HierarchyTree readStandardTree(String p_fileName, LinkedHashMap p_dictionary, int p_level) throws IOException {
         try {
         	FileReader in = new FileReader(p_fileName);
         	BufferedReader data = new BufferedReader(in);

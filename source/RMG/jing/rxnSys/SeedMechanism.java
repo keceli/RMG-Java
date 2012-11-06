@@ -69,7 +69,7 @@ public class SeedMechanism {
     
     protected LinkedHashSet reactionSet = new LinkedHashSet(); 
     
-    protected HashMap speciesSet = new HashMap(); 
+    protected LinkedHashMap speciesSet = new LinkedHashMap(); 
     
     private boolean generateReactions = false;
     
@@ -110,7 +110,7 @@ public class SeedMechanism {
     
     public void read(String p_directoryName, boolean p_fromRestart, String seedMechName) throws IOException {
         Logger.info("Reading seed mechanism from directory " + p_directoryName);
-    	HashMap localSpecies = null;
+    	LinkedHashMap localSpecies = null;
     	LinkedHashSet localReactions = null;
 		try {
         	if (!p_directoryName.endsWith("/")) p_directoryName = p_directoryName + "/";
@@ -141,7 +141,7 @@ public class SeedMechanism {
     }
     
 	
-    public LinkedHashSet readReactions(String p_reactionFileName, String p_name, HashMap allSpecies, String source) throws IOException {
+    public LinkedHashSet readReactions(String p_reactionFileName, String p_name, LinkedHashMap allSpecies, String source) throws IOException {
     	LinkedHashSet localReactions = new LinkedHashSet();
         try {
         	FileReader in = new FileReader(p_reactionFileName);
@@ -197,8 +197,8 @@ public class SeedMechanism {
         }
     }
     
-    public HashMap readSpecies(String p_speciesFileName, String p_name, String source) throws IOException {
-    	HashMap localSpecies = new HashMap();
+    public LinkedHashMap readSpecies(String p_speciesFileName, String p_name, String source) throws IOException {
+    	LinkedHashMap localSpecies = new LinkedHashMap();
         try {
         	FileReader in = new FileReader(p_speciesFileName);
         	BufferedReader data = new BufferedReader(in);
@@ -253,7 +253,7 @@ public class SeedMechanism {
         }
     }
     
-    public LinkedHashSet readPdepReactions(String pdepFileName, String p_name, HashMap allSpecies, String source) throws IOException {
+    public LinkedHashSet readPdepReactions(String pdepFileName, String p_name, LinkedHashMap allSpecies, String source) throws IOException {
     	LinkedHashSet localReactions = new LinkedHashSet();
 		LinkedList pdepNetworks = getPDepNetworks();
         try {
@@ -285,7 +285,7 @@ public class SeedMechanism {
 			boolean continueToReadRxn = true;
 			
 			// Initialize all of the possible pdep variables
-			HashMap thirdBodyList = new HashMap();
+			LinkedHashMap thirdBodyList = new LinkedHashMap();
 			UncertainDouble uA = new UncertainDouble(0.0, 0.0, "Adder");
 			UncertainDouble un = new UncertainDouble(0.0, 0.0, "Adder");
 			UncertainDouble uE = new UncertainDouble(0.0, 0.0, "Adder");

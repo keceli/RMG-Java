@@ -41,23 +41,23 @@ import jing.rxnSys.Logger;
  *
  */
 public class PrimaryTransportLibrary {
-	protected static HashMap library;
-	protected static HashMap dictionary;
+	protected static LinkedHashMap library;
+	protected static LinkedHashMap dictionary;
 	
 
 	public PrimaryTransportLibrary(){
-		library = new HashMap();
-		dictionary = new HashMap();
+		library = new LinkedHashMap();
+		dictionary = new LinkedHashMap();
 	}
 
-	public PrimaryTransportLibrary(HashMap Dictionary, HashMap Library) {
+	public PrimaryTransportLibrary(LinkedHashMap Dictionary, LinkedHashMap Library) {
 		dictionary = Dictionary;
 		library = Library;
 	}
 
 	public PrimaryTransportLibrary(String name, String location) {
-		library = new HashMap();
-		dictionary = new HashMap();
+		library = new LinkedHashMap();
+		dictionary = new LinkedHashMap();
 		appendPrimaryTransportLibrary(name, location);
 	}
 
@@ -81,11 +81,11 @@ public class PrimaryTransportLibrary {
 		library = readLibrary(p_library, dictionary, source);
     }
 
-	public HashMap readLibrary(String p_transportFileName, HashMap p_dictionary, String source) throws IOException {
+	public LinkedHashMap readLibrary(String p_transportFileName, LinkedHashMap p_dictionary, String source) throws IOException {
 		try{
 			FileReader in = new FileReader(p_transportFileName);
 			BufferedReader data = new BufferedReader(in);
-			HashMap tempLibrary = new HashMap();
+			LinkedHashMap tempLibrary = new LinkedHashMap();
 			String line = ChemParser.readMeaningfulLine(data, true);
 			while (line != null){
 				StringTokenizer token = new StringTokenizer(line);
@@ -139,7 +139,7 @@ public class PrimaryTransportLibrary {
 		}
 	}
 
-	public HashMap readDictionary(String p_fileName, String source) throws FileNotFoundException, IOException{
+	public LinkedHashMap readDictionary(String p_fileName, String source) throws FileNotFoundException, IOException{
 		try{
 			FileReader in = new FileReader(p_fileName);
 			BufferedReader data = new BufferedReader(in);

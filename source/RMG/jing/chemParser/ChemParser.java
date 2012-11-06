@@ -101,11 +101,11 @@ public class ChemParser {
     // Argument Stringp_name : the name of union
     // Argument HashMapp_unRead : the map including all the union, each mapping maps the unread union group's name with their union components' names.
     // Argument HashMapp_dictionary : The real dicationary where we can find the graph information from the name.
-    public static void findUnion(String p_name, HashMap p_unRead, HashMap p_dictionary) {
+    public static void findUnion(String p_name, LinkedHashMap p_unRead, LinkedHashMap p_dictionary) {
         FunctionalGroupCollection fgc = new FunctionalGroupCollection(p_name);
 
         // get the union set according to the p_name
-        HashSet union = (HashSet)p_unRead.get(p_name);
+        LinkedHashSet union = (LinkedHashSet)p_unRead.get(p_name);
         Iterator union_iter = union.iterator();
         while (union_iter.hasNext()) {
         	String fg_name = (String)union_iter.next();
@@ -269,9 +269,9 @@ public class ChemParser {
      * MRH 23MAR2010:
      * Commented out uncalled parseArrheniusReaction method
      */
-    //## operation parseArrheniusReaction(HashMap,String,double,double)
+    //## operation parseArrheniusReaction(LinkedHashMap,String,double,double)
 //    public static Reaction parseCoreArrheniusReaction(SpeciesDictionary p_species, String p_reactionString, double p_AMultiplier, double p_EMultiplier) {
-//        //#[ operation parseArrheniusReaction(HashMap,String,double,double)
+//        //#[ operation parseArrheniusReaction(LinkedHashMap,String,double,double)
 //        //boolean isReverse = false;
 //		if (p_reactionString == null) throw new NullPointerException("parseArrheniusReaction");
 //
@@ -321,9 +321,9 @@ public class ChemParser {
      * MRH 23MAR2010:
      * 	Commented out uncalled parseArrheniusReaction method
      */
-//	## operation parseArrheniusReaction(HashMap,String,double,double)
+//	## operation parseArrheniusReaction(LinkedHashMap,String,double,double)
 //    public static Reaction parseEdgeArrheniusReaction(SpeciesDictionary p_species, String p_reactionString, double p_AMultiplier, double p_EMultiplier) {
-//        //#[ operation parseArrheniusReaction(HashMap,String,double,double)
+//        //#[ operation parseArrheniusReaction(LinkedHashMap,String,double,double)
 //        //boolean isReverse = false;
 //		if (p_reactionString == null) throw new NullPointerException("parseArrheniusReaction");
 //
@@ -385,9 +385,9 @@ public class ChemParser {
      * MRH 23MAR2010:
      * 	Commented out uncalled parseArrheniusReaction method
      */
-//	## operation parseArrheniusReaction(HashMap,String,double,double)
+//	## operation parseArrheniusReaction(LinkedHashMap,String,double,double)
 //    public static Reaction parseArrheniusReaction(SpeciesDictionary p_species, String p_reactionString, double p_AMultiplier, double p_EMultiplier, CoreEdgeReactionModel cerm) {
-//        //#[ operation parseArrheniusReaction(HashMap,String,double,double)
+//        //#[ operation parseArrheniusReaction(LinkedHashMap,String,double,double)
 //        //boolean isReverse = false;
 //		if (p_reactionString == null) throw new NullPointerException("parseArrheniusReaction");
 //
@@ -578,9 +578,9 @@ public class ChemParser {
         	return Reaction.makeReaction(s.generateReverseStructure(),k,generateReverse);
     }
 
-  //## operation parseArrheniusReaction(HashMap,String,double,double)
-  public static Reaction parseArrheniusReaction(HashMap p_species, String p_reactionString, double p_AMultiplier, double p_EMultiplier) {
-      //#[ operation parseArrheniusReaction(HashMap,String,double,double)
+  //## operation parseArrheniusReaction(LinkedHashMap,String,double,double)
+  public static Reaction parseArrheniusReaction(LinkedHashMap p_species, String p_reactionString, double p_AMultiplier, double p_EMultiplier) {
+      //#[ operation parseArrheniusReaction(LinkedHashMap,String,double,double)
       if (p_reactionString == null) throw new NullPointerException("parseArrheniusReaction");
 
       StringTokenizer st = new StringTokenizer(p_reactionString);
@@ -625,9 +625,9 @@ public class ChemParser {
       //#]
   }
 
-    //## operation parseReactionSpecies(HashMap,String)
+    //## operation parseReactionSpecies(LinkedHashMap,String)
     public static LinkedList parseReactionSpecies(SpeciesDictionary p_speciesSet, String p_speciesString) {
-        //#[ operation parseReactionSpecies(HashMap,String)
+        //#[ operation parseReactionSpecies(LinkedHashMap,String)
         if (p_speciesString == null) throw new NullPointerException();
 
         StringTokenizer st = new StringTokenizer(p_speciesString, "+");
@@ -714,9 +714,9 @@ public class ChemParser {
       }
 
 
-	 //## operation parseReactionSpecies(HashMap,String)
-    public static LinkedList parseReactionSpecies(HashMap p_speciesSet, String p_speciesString) {
-        //#[ operation parseReactionSpecies(HashMap,String)
+	 //## operation parseReactionSpecies(LinkedHashMap,String)
+    public static LinkedList parseReactionSpecies(LinkedHashMap p_speciesSet, String p_speciesString) {
+        //#[ operation parseReactionSpecies(LinkedHashMap,String)
         if (p_speciesString == null) throw new NullPointerException();
 
         StringTokenizer st = new StringTokenizer(p_speciesString, "+");
@@ -932,11 +932,11 @@ public class ChemParser {
 
 
     //## operation parseThirdBodyList(String)
-    public static HashMap parseThirdBodyList(String p_string, HashMap speciesList) {
+    public static LinkedHashMap parseThirdBodyList(String p_string, LinkedHashMap speciesList) {
         //#[ operation parseThirdBodyList(String)
         if (p_string == null) throw new NullPointerException("read third body factor");
 
-        HashMap thirdBodyList = new HashMap();
+        LinkedHashMap thirdBodyList = new LinkedHashMap();
         StringTokenizer st = new StringTokenizer(p_string, "/");
         /*
          * MRH 23APR2010:
@@ -1084,7 +1084,7 @@ public class ChemParser {
         		return bond;
         	}
         	else {
-        		HashSet bondList = new HashSet();
+        		LinkedHashSet bondList = new LinkedHashSet();
         		while (bondToken.hasMoreTokens()) {
         			String b = bondToken.nextToken();
         			Bond bond = Bond.make(b);
@@ -1285,7 +1285,7 @@ public class ChemParser {
         		return atom;
         	}
         	else {
-        		HashSet atomList = new HashSet();
+        		LinkedHashSet atomList = new LinkedHashSet();
         		ChemNodeElement atom = null;
         		while (aListToken.hasMoreTokens()) {
         			String nextToken = aListToken.nextToken();
@@ -1412,7 +1412,7 @@ public class ChemParser {
         	FileReader in = new FileReader(p_fileName);
 
         	BufferedReader reader = new BufferedReader(in);
-        	HashSet fgList = new HashSet();
+        	LinkedHashSet fgList = new LinkedHashSet();
 
         	String line = readMeaningfulLine(reader, true);
 
@@ -1439,9 +1439,9 @@ public class ChemParser {
     Effects: read hierarchy tree structure
     Modifies:
     */
-    //## operation readHierarchyTree(BufferedReader,HashMap,int)
-    public static HierarchyTree readHierarchyTree(BufferedReader p_reader, HashMap p_dictionary, int p_level) throws IOException, NotInDictionaryException {
-        //#[ operation readHierarchyTree(BufferedReader,HashMap,int)
+    //## operation readHierarchyTree(BufferedReader,LinkedHashMap,int)
+    public static HierarchyTree readHierarchyTree(BufferedReader p_reader, LinkedHashMap p_dictionary, int p_level) throws IOException, NotInDictionaryException {
+        //#[ operation readHierarchyTree(BufferedReader,LinkedHashMap,int)
         try {
         	HierarchyTreeNode root = (HierarchyTreeNode)readHierarchyTreeNode(p_reader,p_level,p_dictionary);
         	if (root == null) return null;
@@ -1461,9 +1461,9 @@ public class ChemParser {
         //#]
     }
 
-    //## operation readHierarchyTreeNode(BufferedReader,int,HashMap)
-    public static Object readHierarchyTreeNode(BufferedReader p_reader, int p_level, HashMap p_dictionary) throws IOException {
-        //#[ operation readHierarchyTreeNode(BufferedReader,int,HashMap)
+    //## operation readHierarchyTreeNode(BufferedReader,int,LinkedHashMap)
+    public static Object readHierarchyTreeNode(BufferedReader p_reader, int p_level, LinkedHashMap p_dictionary) throws IOException {
+        //#[ operation readHierarchyTreeNode(BufferedReader,int,LinkedHashMap)
         try {
         	p_reader.mark(1000);
         	String line = p_reader.readLine();
@@ -1581,7 +1581,7 @@ public class ChemParser {
         	FileReader in = new FileReader(p_fileName);
 
         	BufferedReader reader = new BufferedReader(in);
-        	HashSet speciesList = new HashSet();
+        	LinkedHashSet speciesList = new LinkedHashSet();
 
         	String line = readMeaningfulLine(reader, true);
         	while (line != null) {
@@ -1641,9 +1641,9 @@ public class ChemParser {
     }
 
 	
-    public static HashSet readUnion(String p_string) throws InvalidUnionFormatException {
+    public static LinkedHashSet readUnion(String p_string) throws InvalidUnionFormatException {
         try {
-        	HashSet result = new HashSet();
+        	LinkedHashSet result = new LinkedHashSet();
         	if (p_string == null) return result;
         	p_string = p_string.trim();
         	String prefix = p_string.substring(0,5);

@@ -63,7 +63,7 @@ public class GATP implements GeneralGAPP {
     /**
     This is a thermo library for the species whose thermal data can't be estimated by Group Additivity Method.  For example, H2, H.
     */
-//    protected static HashMap library;		//## attribute library
+//    protected static LinkedHashMap library;		//## attribute library
 
     protected ThermoGAGroupLibrary thermoLibrary;
 
@@ -126,7 +126,7 @@ public class GATP implements GeneralGAPP {
         ThermoData result = new ThermoData();
     
         Graph g = p_chemGraph.getGraph();
-        HashMap oldCentralNode = (HashMap)(p_chemGraph.getCentralNode()).clone();
+        LinkedHashMap oldCentralNode = (LinkedHashMap)(p_chemGraph.getCentralNode()).clone();
 
         // satuate radical site
         int max_radNum_molecule = ChemGraph.getMAX_RADICAL_NUM();
@@ -287,7 +287,7 @@ public class GATP implements GeneralGAPP {
     //## operation getOtherCorrection(ChemGraph)
     public ThermoGAValue getOtherCorrection(ChemGraph p_chemGraph) {
         //#[ operation getOtherCorrection(ChemGraph)
-		HashMap oldCentralNode = (HashMap)(p_chemGraph.getCentralNode()).clone();
+		LinkedHashMap oldCentralNode = (LinkedHashMap)(p_chemGraph.getCentralNode()).clone();
         ThermoGAValue ga = thermoLibrary.findOtherCorrection(p_chemGraph);
         //if (ga != null) System.out.println("Other Correction: " + ga.getName());
 		p_chemGraph.setCentralNode(oldCentralNode);
@@ -300,7 +300,7 @@ public class GATP implements GeneralGAPP {
         //#[ operation getRingCorrection(ChemGraph)
 		 if (p_chemGraph.isAcyclic()) return null;
 
-		 	HashMap oldCentralNode = (HashMap)(p_chemGraph.getCentralNode()).clone();
+		 	LinkedHashMap oldCentralNode = (LinkedHashMap)(p_chemGraph.getCentralNode()).clone();
 	        ChemGraph sat = p_chemGraph;
 	        if (sat.isRadical()) {
 				sat = ChemGraph.saturate(p_chemGraph);
@@ -324,7 +324,7 @@ public class GATP implements GeneralGAPP {
 
 /*
     public void initializeLibrary() {
-        library = new HashMap();
+        library = new LinkedHashMap();
         // put in H2
         ThermoData td_H2 = new ThermoData(0.000,31.233,6.895,6.975,6.994,7.009,7.081,7.219,7.720,0,0,0,"library value for H2");
         library.put("H2", td_H2);
@@ -340,8 +340,8 @@ public class GATP implements GeneralGAPP {
       public void initializePrimaryThermoLibrary(){//svp
 
 //        primaryLibrary = PrimaryThermoLibrary.getINSTANCE();
-    	  HashMap ptlLibrary = PrimaryThermoLibrary.library;
-    	  HashMap ptlDictionary = PrimaryThermoLibrary.dictionary;
+    	  LinkedHashMap ptlLibrary = PrimaryThermoLibrary.library;
+    	  LinkedHashMap ptlDictionary = PrimaryThermoLibrary.dictionary;
     	  primaryLibrary = new PrimaryThermoLibrary(ptlDictionary, ptlLibrary);
 
       }
@@ -352,11 +352,11 @@ public class GATP implements GeneralGAPP {
     }
 
 	/*
-    public static HashMap getLibrary() {
+    public static LinkedHashMap getLibrary() {
         return library;
     }
 
-    public static void setLibrary(HashMap p_library) {
+    public static void setLibrary(LinkedHashMap p_library) {
         library = p_library;
     }
 	 */

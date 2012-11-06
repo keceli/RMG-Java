@@ -45,7 +45,7 @@ import jing.rxnSys.SystemSnapshot;
 //## class ThirdBodyReaction 
 public class ThirdBodyReaction extends Reaction {
   
-  protected HashMap weightMap = new HashMap();		//## attribute weightMap 
+  protected LinkedHashMap weightMap = new LinkedHashMap();		//## attribute weightMap 
   
   
   // Constructors
@@ -64,7 +64,7 @@ public class ThirdBodyReaction extends Reaction {
       return rate;
   }
   
-  public HashMap getWeightMap(){
+  public LinkedHashMap getWeightMap(){
 	  return weightMap;
   }
   //## operation calculateThirdBodyCoefficient(SystemSnapshot) 
@@ -185,9 +185,9 @@ public class ThirdBodyReaction extends Reaction {
       //#]
   }
   
-  //## operation make(Reaction,HashMap) 
-  public static ThirdBodyReaction make(Reaction p_reaction, HashMap p_thirdBodyList) {
-      //#[ operation make(Reaction,HashMap) 
+  //## operation make(Reaction,LinkedHashMap) 
+  public static ThirdBodyReaction make(Reaction p_reaction, LinkedHashMap p_thirdBodyList) {
+      //#[ operation make(Reaction,LinkedHashMap) 
       ThirdBodyReaction tbr = new ThirdBodyReaction();
       tbr.structure = p_reaction.getStructure();
       tbr.kinetics = p_reaction.getKinetics();

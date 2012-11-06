@@ -32,3 +32,6 @@ web/build/*
 
 # Compiled python files
 *.pyc
+
+# Misc
+Makefile

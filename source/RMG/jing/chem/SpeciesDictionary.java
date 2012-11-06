@@ -225,11 +225,11 @@ public class SpeciesDictionary {
 	    }
 	
 	    //## operation getSpeciesSetFromName(String) 
-	    public HashSet getSpeciesSetFromName(String p_name) {
+	    public LinkedHashSet getSpeciesSetFromName(String p_name) {
 	        //#[ operation getSpeciesSetFromName(String) 
 	        if (p_name == null) throw new NullPointerException();
 	        
-	        HashSet speSet = new HashSet();
+	        LinkedHashSet speSet = new LinkedHashSet();
 	        Iterator iter = dictionary.values().iterator();
 	        while (iter.hasNext()) {
 	        	Species spe = (Species)iter.next();
@@ -244,9 +244,9 @@ public class SpeciesDictionary {
 	    }
 		
     //## operation getSpeciesSet() 
-    public HashSet getSpeciesSet() {
+    public LinkedHashSet getSpeciesSet() {
         //#[ operation getSpeciesSet() 
-        return new HashSet(dictionary.values());
+        return new LinkedHashSet(dictionary.values());
         //#]
     }
     

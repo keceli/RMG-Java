@@ -47,9 +47,9 @@ public class InitialStatus extends SystemSnapshot {
 	}
     
 	
-    public HashMap identifyColliders() {
+    public LinkedHashMap identifyColliders() {
 		
-        HashMap result = new HashMap();
+        LinkedHashMap result = new LinkedHashMap();
         double totalMole = getTotalMole();
         double adjTotalMole = 0;
         for (Iterator iter = getSpeciesStatus(); iter.hasNext(); ) {

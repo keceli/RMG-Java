@@ -41,7 +41,7 @@ import java.util.*;
 //## class Atom
 public class Atom implements ChemNodeElement {
 
-  protected static HashMap dictionary = new HashMap();		//## attribute dictionary
+  protected static LinkedHashMap dictionary = new LinkedHashMap();		//## attribute dictionary
 
   protected String name;		//## attribute name
 
@@ -270,11 +270,11 @@ public class Atom implements ChemNodeElement {
       //#]
   }
 
-  public static HashMap getDictionary() {
+  public static LinkedHashMap getDictionary() {
       return dictionary;
   }
 
-  public static void setDictionary(HashMap p_dictionary) {
+  public static void setDictionary(LinkedHashMap p_dictionary) {
       dictionary = p_dictionary;
   }
 

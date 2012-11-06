@@ -49,14 +49,14 @@ public class RateConstant {
     protected int distance = -1;		//## attribute distance 
     
     protected KineticsTemplate kineticsTemplate;
-    protected HashSet kineticsTemplateFromLibrary;
+    protected LinkedHashSet kineticsTemplateFromLibrary;
     
     // Constructors
     
     //## operation RateConstant(KineticsTemplate,int) 
     public  RateConstant(KineticsTemplate p_kineticsTemplate, int p_distance) {
         {
-            kineticsTemplateFromLibrary=new HashSet();
+            kineticsTemplateFromLibrary=new LinkedHashSet();
         }
         //#[ operation RateConstant(KineticsTemplate,int) 
         kineticsTemplate = p_kineticsTemplate;
@@ -65,12 +65,12 @@ public class RateConstant {
         
         //#]
     }
-    //## operation RateConstant(KineticsTemplate,HashSet,int) 
-    public  RateConstant(KineticsTemplate p_kineticsTemplate, HashSet p_kineticsTemplateFromLibrary, int p_distance) {
+    //## operation RateConstant(KineticsTemplate,LinkedHashSet,int) 
+    public  RateConstant(KineticsTemplate p_kineticsTemplate, LinkedHashSet p_kineticsTemplateFromLibrary, int p_distance) {
         {
-            kineticsTemplateFromLibrary=new HashSet();
+            kineticsTemplateFromLibrary=new LinkedHashSet();
         }
-        //#[ operation RateConstant(KineticsTemplate,HashSet,int) 
+        //#[ operation RateConstant(KineticsTemplate,LinkedHashSet,int) 
         kineticsTemplate = p_kineticsTemplate;
         kineticsTemplateFromLibrary = p_kineticsTemplateFromLibrary;
         distance = p_distance;
@@ -80,7 +80,7 @@ public class RateConstant {
     }
     public  RateConstant() {
         {
-            kineticsTemplateFromLibrary=new HashSet();
+            kineticsTemplateFromLibrary=new LinkedHashSet();
         }
     }
     

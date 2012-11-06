@@ -51,7 +51,7 @@ public class QMTP implements GeneralGAPP {
     private static QMTP INSTANCE = new QMTP();		//## attribute INSTANCE
     protected static PrimaryThermoLibrary primaryLibrary;//Note: may be able to separate this out into GeneralGAPP, as this is common to both GATP and QMTP
     public static String qmfolder= "QMfiles/";
-    //   protected static HashMap library;		//as above, may be able to move this and associated functions to GeneralGAPP (and possibly change from "x implements y" to "x extends y"), as it is common to both GATP and QMTP
+    //   protected static LinkedHashMap library;		//as above, may be able to move this and associated functions to GeneralGAPP (and possibly change from "x implements y" to "x extends y"), as it is common to both GATP and QMTP
     protected ThermoGAGroupLibrary thermoLibrary; //needed for HBI
     public static String qmprogram= "both";//the qmprogram can be "mopac", "gaussian03", "both" (MOPAC and Gaussian), or "mm4"/"mm4hr"
     public static boolean usePolar = false; //use polar keyword in MOPAC
@@ -98,7 +98,7 @@ public class QMTP implements GeneralGAPP {
             int sigmaRadical = p_chemGraph.getSymmetryNumber();
             
             Graph g = p_chemGraph.getGraph();
-            HashMap oldCentralNode = (HashMap)(p_chemGraph.getCentralNode()).clone();
+            LinkedHashMap oldCentralNode = (LinkedHashMap)(p_chemGraph.getCentralNode()).clone();
             // saturate radical site
             int max_radNum_molecule = ChemGraph.getMAX_RADICAL_NUM();
             int max_radNum_atom = Math.min(8,max_radNum_molecule);

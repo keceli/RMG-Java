@@ -45,18 +45,18 @@ import jing.chemParser.*;
 
 //## class PrimaryThermoLibrary
 public class PrimaryThermoLibrary {
-protected static HashMap library;
-protected static HashMap dictionary;
+protected static LinkedHashMap library;
+protected static LinkedHashMap dictionary;
 private static PrimaryThermoLibrary INSTANCE = new PrimaryThermoLibrary();	//## attribute INSTANCE
 
 
 private PrimaryThermoLibrary(){
-  library = new HashMap();
-  dictionary = new HashMap();
+  library = new LinkedHashMap();
+  dictionary = new LinkedHashMap();
 }
 
 // 7-Jul-2009: MRH
-public PrimaryThermoLibrary(HashMap Dictionary, HashMap Library) {
+public PrimaryThermoLibrary(LinkedHashMap Dictionary, LinkedHashMap Library) {
 	dictionary = Dictionary;
 	library = Library;
 }
@@ -64,8 +64,8 @@ public PrimaryThermoLibrary(HashMap Dictionary, HashMap Library) {
 //7-Jul-2009: MRH
 public PrimaryThermoLibrary(String name, String location) {
 	// Create a new PrimaryThermoLibrary.
-	library = new HashMap();
-	dictionary = new HashMap();
+	library = new LinkedHashMap();
+	dictionary = new LinkedHashMap();
 	appendPrimaryThermoLibrary(name, location);
 }
 
@@ -92,7 +92,7 @@ public void read(String p_dictionary, String p_library, String p_name) throws IO
 }
 
 //7-Jul-2009: MRH
-public HashMap readLibrary(String p_thermoFileName, HashMap p_dictionary, String source) throws IOException {
+public LinkedHashMap readLibrary(String p_thermoFileName, LinkedHashMap p_dictionary, String source) throws IOException {
 	try{
 		FileReader in = new FileReader(p_thermoFileName);
 		BufferedReader data = new BufferedReader(in);
@@ -148,7 +148,7 @@ public HashMap readLibrary(String p_thermoFileName, HashMap p_dictionary, String
 }
 
 //7-Jul-2009: MRH
-public HashMap readDictionary(String p_fileName, String source) throws FileNotFoundException, IOException{
+public LinkedHashMap readDictionary(String p_fileName, String source) throws FileNotFoundException, IOException{
 	  try{
 	    FileReader in = new FileReader(p_fileName);
 	    BufferedReader data = new BufferedReader(in);
@@ -255,7 +255,7 @@ public void read(String p_dictionary, String p_library) throws IOException, File
 }
 
 //## operation readDictionary(String)
-public HashMap readDictionary(String p_fileName) throws FileNotFoundException, IOException{
+public LinkedHashMap readDictionary(String p_fileName) throws FileNotFoundException, IOException{
   try{
     FileReader in = new FileReader(p_fileName);
     BufferedReader data = new BufferedReader(in);
@@ -303,11 +303,11 @@ public HashMap readDictionary(String p_fileName) throws FileNotFoundException, I
 
 
 
-public HashMap readLibrary(String p_thermoFileName, HashMap p_dictionary) throws IOException {
+public LinkedHashMap readLibrary(String p_thermoFileName, LinkedHashMap p_dictionary) throws IOException {
  try{
   FileReader in = new FileReader(p_thermoFileName);
   BufferedReader data = new BufferedReader(in);
-  HashMap library = new HashMap();
+  LinkedHashMap library = new LinkedHashMap();
   String line = ChemParser.readMeaningfulLine(data, true);
   while (line != null){
     StringTokenizer token = new StringTokenizer(line);

@@ -19,8 +19,8 @@ public class InchifyCHEMKINusingDictionary {
         String workingDir = System.getenv("RMG");
         System.setProperty("RMG.workingDirectory", workingDir);
 
-	//1. read the Dictionary file, converting to modified inchis along the way and adding them into inchiDict HashMap
-        HashMap inchiDict = new HashMap();
+	//1. read the Dictionary file, converting to modified inchis along the way and adding them into inchiDict LinkedHashMap
+        LinkedHashMap inchiDict = new LinkedHashMap();
 	try {
             FileReader in = new FileReader(args[0]);
             BufferedReader data = new BufferedReader(in);

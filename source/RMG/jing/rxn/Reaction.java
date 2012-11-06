@@ -97,9 +97,9 @@ public class Reaction {
   }
 
   
-  //## operation allProductsIncluded(HashSet)
-  public boolean allProductsIncluded(HashSet p_speciesSet) {
-      //#[ operation allProductsIncluded(HashSet)
+  //## operation allProductsIncluded(LinkedHashSet)
+  public boolean allProductsIncluded(LinkedHashSet p_speciesSet) {
+      //#[ operation allProductsIncluded(LinkedHashSet)
       Iterator iter = getProducts();
       while (iter.hasNext()) {
       	Species spe = ((Species)iter.next());
@@ -109,9 +109,9 @@ public class Reaction {
       //#]
   }
 
-  //## operation allReactantsIncluded(HashSet)
-  public boolean allReactantsIncluded(HashSet p_speciesSet) {
-      //#[ operation allReactantsIncluded(HashSet)
+  //## operation allReactantsIncluded(LinkedHashSet)
+  public boolean allReactantsIncluded(LinkedHashSet p_speciesSet) {
+      //#[ operation allReactantsIncluded(LinkedHashSet)
       if (p_speciesSet == null) throw new NullPointerException();
       Iterator iter = getReactants();
       while (iter.hasNext()) {
@@ -1232,9 +1232,9 @@ public class Reaction {
       //#]
   }
 
-  //## operation isIncluded(HashSet)
-  public boolean isIncluded(HashSet p_speciesSet) {
-      //#[ operation isIncluded(HashSet)
+  //## operation isIncluded(LinkedHashSet)
+  public boolean isIncluded(LinkedHashSet p_speciesSet) {
+      //#[ operation isIncluded(LinkedHashSet)
       return (allReactantsIncluded(p_speciesSet) && allProductsIncluded(p_speciesSet));
       //#]
   }

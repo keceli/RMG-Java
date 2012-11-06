@@ -46,7 +46,7 @@ public class FGElementDictionary {
     
     private static FGElementDictionary INSTANCE = new FGElementDictionary();		//## attribute INSTANCE 
     
-    protected HashMap dictionary;		//## attribute dictionary 
+    protected LinkedHashMap dictionary;		//## attribute dictionary 
     
     
     // Constructors
@@ -54,7 +54,7 @@ public class FGElementDictionary {
     //## operation FGElementDictionary() 
     private  FGElementDictionary() {
         //#[ operation FGElementDictionary() 
-        dictionary = new HashMap();
+        dictionary = new LinkedHashMap();
         
         
         //#]
@@ -82,7 +82,7 @@ public class FGElementDictionary {
         //#]
     }
     
-    public HashMap getDictionary() {
+    public LinkedHashMap getDictionary() {
         return dictionary;
     }
     

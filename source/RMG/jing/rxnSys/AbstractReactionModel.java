@@ -67,7 +67,7 @@ public class AbstractReactionModel implements ReactionModel {
         
         //#]
     }
-    //## operation AbstractReactionModel(HashSet) 
+    //## operation AbstractReactionModel(LinkedHashSet) 
     public  AbstractReactionModel(LinkedHashSet p_reactionSet) {
         {
             species=new LinkedHashSet();
@@ -75,7 +75,7 @@ public class AbstractReactionModel implements ReactionModel {
         {
             reaction=new LinkedHashSet();
         }
-        //#[ operation AbstractReactionModel(HashSet) 
+        //#[ operation AbstractReactionModel(LinkedHashSet) 
         reaction = p_reactionSet;
         
         Iterator iter = p_reactionSet.iterator();
@@ -337,16 +337,16 @@ public class AbstractReactionModel implements ReactionModel {
         //#]
     }
     
-    //## operation setReactionSet(HashSet) 
+    //## operation setReactionSet(LinkedHashSet) 
     public void setReactionSet(LinkedHashSet p_reactionSet) {
-        //#[ operation setReactionSet(HashSet) 
+        //#[ operation setReactionSet(LinkedHashSet) 
         reaction = p_reactionSet;
         //#]
     }
     
-    //## operation setSpeciesSet(HashSet) 
+    //## operation setSpeciesSet(LinkedHashSet) 
     public void setSpeciesSet(LinkedHashSet p_speciesSet) {
-        //#[ operation setSpeciesSet(HashSet) 
+        //#[ operation setSpeciesSet(LinkedHashSet) 
         species = p_speciesSet;
         //#]
     }

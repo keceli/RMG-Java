@@ -51,7 +51,7 @@ public class PrimaryKineticLibrary {
     
     protected static LinkedHashSet reactionSet = new LinkedHashSet(); 
     
-    protected HashMap speciesSet = new HashMap(); 
+    protected LinkedHashMap speciesSet = new LinkedHashMap(); 
     
     
     // Constructors

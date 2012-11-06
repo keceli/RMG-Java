@@ -27,7 +27,7 @@
 
 package jing.rxn;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.StringTokenizer;
 
 import jing.mathTool.MathTool;
@@ -86,7 +86,7 @@ public class LindemannReaction extends ThirdBodyReaction {
 		return;
 	}
 	
-	public static LindemannReaction make(Reaction p_reaction, HashMap p_weightMap, final ArrheniusKinetics p_low) {
+	public static LindemannReaction make(Reaction p_reaction, LinkedHashMap p_weightMap, final ArrheniusKinetics p_low) {
 		LindemannReaction lr = new LindemannReaction();
 		lr.structure = p_reaction.getStructure();
 		lr.kinetics = p_reaction.getKinetics();

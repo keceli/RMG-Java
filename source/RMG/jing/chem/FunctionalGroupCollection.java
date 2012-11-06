@@ -43,14 +43,14 @@ public class FunctionalGroupCollection implements Matchable {
     
     protected String name;		//## attribute name 
     
-    protected HashSet functionalGroups;
+    protected LinkedHashSet functionalGroups;
     
     // Constructors
     
     //## operation FunctionalGroupCollection(String) 
     public  FunctionalGroupCollection(String p_name) {
         {
-            functionalGroups=new HashSet();
+            functionalGroups=new LinkedHashSet();
         }
         //#[ operation FunctionalGroupCollection(String) 
         name = p_name;
@@ -58,7 +58,7 @@ public class FunctionalGroupCollection implements Matchable {
     }
     public  FunctionalGroupCollection() {
         {
-            functionalGroups=new HashSet();
+            functionalGroups=new LinkedHashSet();
         }
     }
     
