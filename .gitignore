@@ -35,3 +35,4 @@ web/build/*
 
 # Misc
 Makefile
+/dist/
