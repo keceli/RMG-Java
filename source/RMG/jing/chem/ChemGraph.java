@@ -132,7 +132,8 @@ public class ChemGraph implements Matchable {
                 throw new ForbiddenStructureException(message);
             }
         }
-        this.determineAromaticityAndWriteBBonds();
+       // commented out to allow reactions for aromatic rings (temporary solution)
+       // this.determineAromaticityAndWriteBBonds();
     }
 
     public void determineAromaticityAndWriteBBonds() {
